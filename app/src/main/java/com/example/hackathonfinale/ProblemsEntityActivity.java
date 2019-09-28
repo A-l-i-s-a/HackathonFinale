@@ -21,7 +21,7 @@ public class ProblemsEntityActivity extends AppCompatActivity {
 
         problems = Generator.generatorProduct(50);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewProblems);
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewProblemsEntity);
         Adapter adapter = new Adapter(problems, new Adapter.ViewHolder.Listener() {
             @Override
             public void onProblemClick(Problem problem) {

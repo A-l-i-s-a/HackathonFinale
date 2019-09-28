@@ -1,5 +1,6 @@
 package com.example.hackathonfinale;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -80,7 +81,9 @@ public class RegistrationForEntityFragment extends Fragment {
             registrationButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Intent intent = new Intent(getContext(), ProblemsEntityActivity.class);
 
+                    startActivity(intent);
                 }
             });
         }

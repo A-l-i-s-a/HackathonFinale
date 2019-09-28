@@ -5,9 +5,12 @@ public class User {
     private String phoneNumber;
     private String nickname;
     private String password;
-    private UserType type;
+    private String type;
 
-    public User(String phoneNumber, String nickname, String password, UserType type) {
+    public User() {
+    }
+
+    public User(String phoneNumber, String nickname, String password, String type) {
         this.phoneNumber = phoneNumber;
         this.nickname = nickname;
         this.password = password;
@@ -46,11 +49,11 @@ public class User {
         this.password = password;
     }
 
-    public UserType getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(UserType type) {
+    public void setType(String type) {
         this.type = type;
     }
 }

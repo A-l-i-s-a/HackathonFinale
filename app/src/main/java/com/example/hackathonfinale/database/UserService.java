@@ -23,23 +23,27 @@ public class UserService extends SQLiteOpenHelper implements IDatabaseHandler {
     private static final String KEY_TYPE = "TYPE";
 
 
-    public UserService(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+    public UserService(Context context) {
+        super(context, DATABASE_NAME, null,DATABASE_VERSION);
     }
 
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                                    KEY_PHONENUMBER + " TEXT, " + KEY_NICKNAME + " TEXT" + KEY_PASSWORD + "  TEXT" +
+                                    KEY_TYPE + " TEXT" + ")";
+        db.execSQL(CREATE_USER_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        onCreate(db);
     }
 
     @Override
-    public void onCreate(Object object) {
+    public void addEntity(Object object) {
 
     }
 

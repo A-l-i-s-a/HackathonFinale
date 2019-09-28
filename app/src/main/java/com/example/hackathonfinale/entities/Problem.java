@@ -1,8 +1,9 @@
 package com.example.hackathonfinale.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Problem {
+public class Problem implements Serializable {
     private String name;
     private String description;
     private Poll poll;

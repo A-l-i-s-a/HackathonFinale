@@ -60,7 +60,6 @@ public class PollAdapter extends RecyclerView.Adapter<PollAdapter.ViewHolder> {
         }
 
         private void bind(@NonNull Question question) {
-            System.out.println(question.getName());
             textViewProblemName.setText(question.getName());
             radioButton_YES.setText("YES");
             radioButton_NO.setText("NO");

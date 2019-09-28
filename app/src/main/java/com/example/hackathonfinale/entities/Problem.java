@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Problem implements Serializable {
+
+    private int id;
     private String name;
     private String description;
     private Poll poll;
@@ -22,6 +24,14 @@ public class Problem implements Serializable {
 
     public Problem(String name, String description) {
         this(name, description, null, null);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

@@ -29,15 +29,15 @@ public class UserService extends SQLiteOpenHelper implements IDatabaseHandler {
 
 
     public UserService(Context context) {
-        super(context, DATABASE_NAME, null,DATABASE_VERSION);
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                                    KEY_PHONENUMBER + " TEXT," + KEY_NICKNAME + " TEXT," + KEY_PASSWORD + " TEXT," +
-                                    KEY_TYPE + " TEXT" + ")";
+                KEY_PHONENUMBER + " TEXT," + KEY_NICKNAME + " TEXT," + KEY_PASSWORD + " TEXT," +
+                KEY_TYPE + " TEXT" + ")";
         db.execSQL(CREATE_USER_TABLE);
     }
 
@@ -66,11 +66,11 @@ public class UserService extends SQLiteOpenHelper implements IDatabaseHandler {
     public Object getEntity(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_NAME, new String[]{ KEY_PHONENUMBER,
-                KEY_NICKNAME,KEY_PASSWORD }, KEY_PHONENUMBER + "=?", new String[]{
-                        String.valueOf(id)}, null, null, null, null );
+        Cursor cursor = db.query(TABLE_NAME, new String[]{KEY_PHONENUMBER,
+                KEY_NICKNAME, KEY_PASSWORD}, KEY_ID + "=?", new String[]{
+                String.valueOf(id)}, null, null, null, null);
 
-        if (cursor!=null){
+        if (cursor != null) {
             cursor.moveToFirst();
         }
 
@@ -87,8 +87,8 @@ public class UserService extends SQLiteOpenHelper implements IDatabaseHandler {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-        if(cursor.moveToFirst()){
-            do{
+        if (cursor.moveToFirst()) {
+            do {
                 User user = new User();
                 user.setId(cursor.getInt(0));
                 user.setPhoneNumber(cursor.getString(1));
@@ -96,28 +96,49 @@ public class UserService extends SQLiteOpenHelper implements IDatabaseHandler {
                 user.setPassword(cursor.getString(3));
                 user.setType(cursor.getString(4));
                 userList.add(user);
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
         return userList;
     }
 
     @Override
     public int getEntityCount() {
-        return 0;
+        String query = "SELECT * FROM " + TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.close();
+
+        return cursor.getCount();
     }
 
     @Override
     public void updateObject(Object object) {
+        SQLiteDatabase db = this.getReadableDatabase();
 
+        User user = (User) object;
+        ContentValues values = new ContentValues();
+        values.put(KEY_PHONENUMBER, user.getPhoneNumber());
+        values.put(KEY_NICKNAME, user.getNickname());
+        values.put(KEY_PASSWORD, user.getPassword());
+        values.put(KEY_TYPE, user.getType());
+
+        db.update(TABLE_NAME, values, KEY_ID + " =?", new String[]{
+                String.valueOf(user.getId())
+        });
     }
 
     @Override
     public void deleteObject(Object object) {
-
+        SQLiteDatabase db = this.getReadableDatabase();
+        User user = (User) object;
+        db.delete(TABLE_NAME, KEY_ID + " =?", new String[]{String.valueOf(user.getId())});
+        db.close();
     }
 
     @Override
     public void deleteAll() {
-
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.delete(TABLE_NAME, null, null);
+        db.close();
     }
 }

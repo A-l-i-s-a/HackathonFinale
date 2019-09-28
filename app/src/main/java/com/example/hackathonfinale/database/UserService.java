@@ -1,6 +1,8 @@
 package com.example.hackathonfinale.database;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -8,6 +10,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.hackathonfinale.entities.User;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserService extends SQLiteOpenHelper implements IDatabaseHandler {
@@ -31,7 +36,7 @@ public class UserService extends SQLiteOpenHelper implements IDatabaseHandler {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                                    KEY_PHONENUMBER + " TEXT, " + KEY_NICKNAME + " TEXT" + KEY_PASSWORD + "  TEXT" +
+                                    KEY_PHONENUMBER + " TEXT," + KEY_NICKNAME + " TEXT," + KEY_PASSWORD + " TEXT," +
                                     KEY_TYPE + " TEXT" + ")";
         db.execSQL(CREATE_USER_TABLE);
     }
@@ -44,17 +49,56 @@ public class UserService extends SQLiteOpenHelper implements IDatabaseHandler {
 
     @Override
     public void addEntity(Object object) {
+        SQLiteDatabase db = this.getReadableDatabase();
 
+        User currentUser = (User) object;
+        ContentValues values = new ContentValues();
+        values.put(KEY_PHONENUMBER, currentUser.getPhoneNumber());
+        values.put(KEY_NICKNAME, currentUser.getNickname());
+        values.put(KEY_PASSWORD, currentUser.getPassword());
+        values.put(KEY_TYPE, currentUser.getType());
+
+        db.insert(TABLE_NAME, null, values);
+        db.close();
     }
 
     @Override
     public Object getEntity(int id) {
-        return null;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_NAME, new String[]{ KEY_PHONENUMBER,
+                KEY_NICKNAME,KEY_PASSWORD }, KEY_PHONENUMBER + "=?", new String[]{
+                        String.valueOf(id)}, null, null, null, null );
+
+        if (cursor!=null){
+            cursor.moveToFirst();
+        }
+
+        User currentUser = new User(cursor.getString(0), cursor.getString(1),
+                cursor.getString(2), cursor.getString(3));
+        return currentUser;
     }
 
     @Override
     public List<Object> getAllEntity() {
-        return null;
+        List<Object> userList = new ArrayList<Object>();
+        String selectQuery = "SELECT * FROM " + TABLE_NAME;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if(cursor.moveToFirst()){
+            do{
+                User user = new User();
+                user.setId(cursor.getInt(0));
+                user.setPhoneNumber(cursor.getString(1));
+                user.setNickname(cursor.getString(2));
+                user.setPassword(cursor.getString(3));
+                user.setType(cursor.getString(4));
+                userList.add(user);
+            }while (cursor.moveToNext());
+        }
+        return userList;
     }
 
     @Override

@@ -9,10 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ProblemsEntityActivity"></activity>
+        <activity android:name=".ProblemDetailsActivity" />
+        <activity android:name=".ProblemsIndividualActivity" />
         <activity
             android:name=".EntityActivity"
             android:label="@string/title_activity_entity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".IndividualActivity"
             android:label="@string/title_activity_individual"

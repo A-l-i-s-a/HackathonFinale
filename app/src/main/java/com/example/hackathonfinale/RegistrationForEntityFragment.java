@@ -74,7 +74,7 @@ public class RegistrationForEntityFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_registration_for_entity, container, false);
 
-        Button registrationButton = view.findViewById(R.id.buttonRegistration);
+        Button registrationButton = view.findViewById(R.id.buttonRegistrationEntity);
 
         if (registrationButton != null) {
             registrationButton.setOnClickListener(new View.OnClickListener() {

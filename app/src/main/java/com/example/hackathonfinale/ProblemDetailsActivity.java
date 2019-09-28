@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.hackathonfinale.entities.Answers;
 import com.example.hackathonfinale.entities.Poll;
 import com.example.hackathonfinale.entities.Problem;
 import com.example.hackathonfinale.entities.Question;
@@ -37,13 +37,56 @@ public class ProblemDetailsActivity extends AppCompatActivity {
             textViewProblemDiscription.setText(problem.getDescription());
             Poll poll = problem.getPoll();
 
+//            List<Question> listQuestions = poll.getQuestions();
+
+
 
         }
+
+
 
         questions = Generator.generatorQuestion(20);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewQuestion);
-        PollAdapter adapter = new PollAdapter(questions);
+        PollAdapter adapter = new PollAdapter(questions, new PollAdapter.ViewHolder.Listener() {
+            @Override
+            public void onCheckedChanged(Question question, int i) {
+                switch (i) {
+                    case -1:
+                        Toast.makeText(getApplicationContext(),  "Ничего не выбрано",
+                                Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.radioButton:
+                        question.setAnswer(Answers.YES);
+                        Toast.makeText(getApplicationContext(), question.getName() + " : Первый переключатель",
+                                Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.radioButton2:
+                        question.setAnswer(Answers.NO);
+                        Toast.makeText(getApplicationContext(), question.getName() + " : Второй переключатель",
+                                Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.radioButton3:
+                        question.setAnswer(Answers.MAYBEYES);
+                        Toast.makeText(getApplicationContext(), question.getName() + " : Третий переключатель",
+                                Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.radioButton4:
+                        question.setAnswer(Answers.MAYBENO);
+                        Toast.makeText(getApplicationContext(), question.getName() + " : 4 переключатель",
+                                Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.radioButton5:
+                        question.setAnswer(Answers.NEUTRAKL);
+                        Toast.makeText(getApplicationContext(), question.getName() + " : 5 переключатель",
+                                Toast.LENGTH_SHORT).show();
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        });
 
         recyclerView.setAdapter(adapter);
 

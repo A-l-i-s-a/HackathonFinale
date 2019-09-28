@@ -7,6 +7,20 @@ allprojects {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('C:\\Users\\Irina\\keystores\\key0-keystores.jks')
+            storePassword 'qazwsxedc'
+            keyAlias = 'key0'
+            keyPassword 'qazwsxedc'
+        }
+        release {
+            storeFile file('C:\\Users\\Irina\\keystores\\key0-keystores.jks')
+            storePassword 'qazwsxedc'
+            keyAlias = 'key0'
+            keyPassword 'qazwsxedc'
+        }
+    }
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
@@ -16,6 +30,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArguments = [:]
     }
     buildTypes {
         release {

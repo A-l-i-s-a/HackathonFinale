@@ -1,6 +1,7 @@
 package com.example.hackathonfinale.entities;
 
 public class User {
+    private int id;
     private String phoneNumber;
     private String nickname;
     private String password;
@@ -11,6 +12,14 @@ public class User {
         this.nickname = nickname;
         this.password = password;
         this.type = type;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getPhoneNumber() {

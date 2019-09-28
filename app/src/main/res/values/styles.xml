@@ -18,8 +18,12 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="title">
-        <item name="android:textSize">32px</item>
-        myTextView.setTextColor(FF0000);
+        <item name="android:textSize">32dp</item>
+        <item name="android:fontFamily">sans-serif-smallcaps</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">#009688</item>
+        <item name="android:textStyle">bold</item>
     </style>
     <style name="padding">
         <item name="android:layout_margin">5dp</item>

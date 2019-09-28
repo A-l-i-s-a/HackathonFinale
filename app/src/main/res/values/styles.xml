@@ -17,4 +17,15 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="title">
+        <item name="android:textSize">32px</item>
+        myTextView.setTextColor(FF0000);
+    </style>
+    <style name="padding">
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:layout_marginBottom">2dp</item>
+        <item name="android:padding">5dp</item>
+    </style>
+
 </resources>

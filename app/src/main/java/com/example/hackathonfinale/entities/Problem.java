@@ -9,6 +9,7 @@ public class Problem {
     private List<Comment> comments;
 
     public Problem() {
+        this("name", "description", null, null);
     }
 
     public Problem(String name, String description, Poll poll, List<Comment> comments) {
@@ -16,6 +17,10 @@ public class Problem {
         this.description = description;
         this.poll = poll;
         this.comments = comments;
+    }
+
+    public Problem(String name, String description) {
+        this(name, description, null, null);
     }
 
     public String getName() {

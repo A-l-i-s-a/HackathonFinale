@@ -1,11 +1,28 @@
 package com.example.hackathonfinale;
 
 import com.example.hackathonfinale.entities.Problem;
+import com.example.hackathonfinale.entities.Question;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Generator {
+
+    public static ArrayList<Question> generatorQuestion(int count) {
+        ArrayList<Question> questions = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+
+            StringBuilder name = new StringBuilder();
+            for (String s : generateRandomWords((int) (1 + (Math.random() * 4)))) {
+                name.append(s).append(" ");
+            }
+
+            questions.add(new Question(name.toString()));
+        }
+
+        return questions;
+    }
+
 
     public static ArrayList<Problem> generatorProduct(int count) {
         ArrayList<Problem> products = new ArrayList<>();

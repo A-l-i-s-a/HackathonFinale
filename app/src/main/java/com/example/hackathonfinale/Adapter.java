@@ -29,7 +29,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onClickListener.onMovieClick((Problem) view.getTag());
+                onClickListener.onProblemClick((Problem) view.getTag());
             }
         });
         return new ViewHolder(view);
@@ -64,7 +64,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         }
 
         interface Listener {
-            void onMovieClick(Problem problem);
+            void onProblemClick(Problem problem);
         }
 
     }

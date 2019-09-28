@@ -25,11 +25,12 @@ public class ProblemsIndividualActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerViewProblems);
         Adapter adapter = new Adapter(problems, new Adapter.ViewHolder.Listener() {
             @Override
-            public void onMovieClick(Problem problem) {
+            public void onProblemClick(Problem problem) {
                 Intent intent = new Intent(ProblemsIndividualActivity.this, ProblemDetailsActivity.class);
 
-                intent.putExtra("textViewProblemName", problem.getName());
-                intent.putExtra("textViewProblemDiscription", problem.getDescription());
+//                intent.putExtra("textViewProblemName", problem.getName());
+//                intent.putExtra("textViewProblemDiscription", problem.getDescription());
+                intent.putExtra(Problem.class.getSimpleName(), problem);
 
                 startActivity(intent);
             }

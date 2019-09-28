@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -97,5 +100,15 @@ public class ProblemDetailsActivity extends AppCompatActivity {
 //            textViewProblemName.setText(extras.getString("textViewProblemName"));
 //            textViewProblemDiscription.setText(extras.getString("textViewProblemDiscription"));
 //        }
+
+        Button button = findViewById(R.id.button2);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProblemDetailsActivity.this, ChartActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

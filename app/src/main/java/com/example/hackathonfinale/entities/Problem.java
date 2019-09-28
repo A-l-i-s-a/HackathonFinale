@@ -1,14 +1,22 @@
 package com.example.hackathonfinale.entities;
 
+import java.util.List;
+
 public class Problem {
     private String name;
     private String description;
+    private Poll poll;
+    private List<Comment> comments;
 
-    public Problem(String name, String description) {
-        this.name = name;
-        this.description = description;
+    public Problem() {
     }
 
+    public Problem(String name, String description, Poll poll, List<Comment> comments) {
+        this.name = name;
+        this.description = description;
+        this.poll = poll;
+        this.comments = comments;
+    }
 
     public String getName() {
         return name;
@@ -24,5 +32,21 @@ public class Problem {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Poll getPoll() {
+        return poll;
+    }
+
+    public void setPoll(Poll poll) {
+        this.poll = poll;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

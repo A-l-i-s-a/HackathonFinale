@@ -1,14 +1,18 @@
 package com.example.hackathonfinale.database;
 
+import android.app.Service;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
 import com.example.hackathonfinale.entities.Comment;
+import com.example.hackathonfinale.entities.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CommentService extends SQLiteOpenHelper implements IDatabaseHandler {
@@ -53,31 +57,96 @@ public class CommentService extends SQLiteOpenHelper implements IDatabaseHandler
 
     @Override
     public Object getEntity(int id) {
-        return null;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_NAME, new String[]{KEY_AUTHOR_ID,
+                KEY_TEXT}, KEY_ID + "=?", new String[]{
+                String.valueOf(id)}, null, null, null, null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+
+        Comment currentComment = new Comment(getUserById(cursor.getInt(0)), cursor.getString(1));
+        return currentComment;
     }
 
     @Override
     public List<Object> getAllEntity() {
-        return null;
+        List<Object> commentList = new ArrayList<Object>();
+        String selectQuery = "SELECT * FROM " + TABLE_NAME;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                User user = new User();
+                Comment comment = new Comment(user, "text");
+
+                comment.setId(cursor.getInt(0));
+                comment.setAuthor(getUserById(cursor.getInt(1)));
+                comment.setText(cursor.getString(2));
+                commentList.add(comment);
+            } while (cursor.moveToNext());
+        }
+        return commentList;
     }
 
     @Override
     public int getEntityCount() {
-        return 0;
+        String query = "SELECT * FROM " + TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.close();
+
+        return cursor.getCount();
     }
 
     @Override
     public void updateObject(Object object) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Comment comment = (Comment) object;
+        ContentValues values = new ContentValues();
+        values.put(KEY_AUTHOR_ID, String.valueOf(comment.getAuthor()));
+        values.put(KEY_TEXT, comment.getText());
+
+
+        db.update(TABLE_NAME, values, KEY_ID + " =?", new String[]{
+                String.valueOf(comment.getId())
+        });
 
     }
 
     @Override
     public void deleteObject(Object object) {
-
+        SQLiteDatabase db = this.getReadableDatabase();
+        Comment comment = (Comment) object;
+        db.delete(TABLE_NAME, KEY_ID + " =?", new String[]{String.valueOf(comment.getId())});
+        db.close();
     }
 
     @Override
     public void deleteAll() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.delete(TABLE_NAME, null, null);
+        db.close();
+    }
 
+    private User getUserById(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query("USER", new String[]{"PHONENUMBER",
+                "NICKNAME", "PASSWORD"}, "ID" + "=?", new String[]{
+                String.valueOf(id)}, null, null, null, null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+
+        User currentUser = new User(cursor.getString(0), cursor.getString(1),
+                cursor.getString(2), cursor.getString(3));
+        return currentUser;
     }
 }

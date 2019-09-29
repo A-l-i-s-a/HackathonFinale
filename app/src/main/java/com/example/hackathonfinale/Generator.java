@@ -8,6 +8,9 @@ import java.util.Random;
 
 public class Generator {
 
+    private ArrayList<Question> individualQ;
+    private ArrayList<Question> entryQ;
+
     public static ArrayList<Question> generatorQuestion(int count) {
         ArrayList<Question> questions = new ArrayList<>();
         for (int i = 0; i < count; i++) {
@@ -60,5 +63,18 @@ public class Generator {
             randomStrings[i] = new String(word);
         }
         return randomStrings;
+    }
+
+    public void generateQuestions(){
+        individualQ.add(new Question("Насколько вам понравилось обслуживание в банке в целом?"));
+        individualQ.add(new Question("Оцените вежливость сотрудников банка?"));
+        individualQ.add(new Question("Оцените профессионализм сотрудников банка?"));
+        individualQ.add(new Question("Посоветовали бы вы наш банк своим друзьям и коллегам?"));
+        individualQ.add(new Question("Являетесь ли вы клиентом банка?"));
+        individualQ.add(new Question("Насколько полно вам известна информация о различных видах кредитных карт банка?"));
+        individualQ.add(new Question("Знаете ли вы, что кредитная карта 'Супер плюс' предусматривает беспроцентный период 2 месяца?"));
+        individualQ.add(new Question("Знаете ли вы, что в случае своевременной уплаты процентов в течение 4 месяцев, банк может понизить процентную ставку по кредиту?"));
+        individualQ.add(new Question("Хотели бы вы получить дополнительную информацию о кредитных картах банка?"));
+        individualQ.add(new Question("Оцените насколько вы остались удовлетворены обслуживанием менеджера в целом?"));
     }
 }

@@ -5,5 +5,5 @@ public enum Answers {
     NO,
     MAYBEYES,
     MAYBENO,
-    NEUTRAKL
+    NEUTRAL
 }

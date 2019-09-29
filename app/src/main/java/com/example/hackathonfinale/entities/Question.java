@@ -13,11 +13,11 @@ public class Question {
         defoltArrayListanswers.add("NO");
         defoltArrayListanswers.add("MAYBEYES");
         defoltArrayListanswers.add("MAYBENO");
-        defoltArrayListanswers.add("NEUTRAKL");
+        defoltArrayListanswers.add("NEUTRAL");
     }
 
     public Question(String name) {
-        this(name, Answers.NEUTRAKL, defoltArrayListanswers);
+        this(name, Answers.NEUTRAL, defoltArrayListanswers);
     }
 
     public Question(String name, Answers answer) {
@@ -28,6 +28,10 @@ public class Question {
         this.name = name;
         this.answer = answer;
         this.arrayListAnswers = arrayListAnswers;
+    }
+
+    public Question(String name, ArrayList<String> arrayListAnswers) {
+        this(name, Answers.NEUTRAL, arrayListAnswers);
     }
 
     public String getName() {

@@ -89,21 +89,40 @@ public class ProblemService extends SQLiteOpenHelper implements IDatabaseHandler
 
     @Override
     public int getEntityCount() {
-        return 0;
+        String query = "SELECT * FROM " + TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.close();
+
+        return cursor.getCount();
     }
 
     @Override
     public void updateObject(Object object) {
+        SQLiteDatabase db = this.getReadableDatabase();
 
+        Problem problem = (Problem) object;
+        ContentValues values = new ContentValues();
+        values.put(KEY_NAME, problem.getName());
+        values.put(KEY_DESCRIPTION, problem.getDescription());
+
+        db.update(TABLE_NAME, values, KEY_ID + " =?", new String[]{
+                String.valueOf(problem.getId())
+        });
     }
 
     @Override
     public void deleteObject(Object object) {
-
+        SQLiteDatabase db = this.getReadableDatabase();
+        Problem problem = (Problem) object;
+        db.delete(TABLE_NAME, KEY_ID + " =?", new String[]{String.valueOf(problem.getId())});
+        db.close();
     }
 
     @Override
     public void deleteAll() {
-
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.delete(TABLE_NAME, null, null);
+        db.close();
     }
 }

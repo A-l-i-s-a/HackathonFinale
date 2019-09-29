@@ -7,7 +7,7 @@
     android:layout_marginTop="60dp"
     android:layout_marginRight="40dp"
     android:layout_marginBottom="60dp"
-    android:background="@mipmap/logotype_foreground"
+    android:background="@drawable/logotype_foreground"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".LoginFragment">

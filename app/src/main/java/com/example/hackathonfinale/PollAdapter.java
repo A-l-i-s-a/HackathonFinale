@@ -27,13 +27,20 @@ public class PollAdapter extends RecyclerView.Adapter<PollAdapter.ViewHolder> {
     @Override
     public PollAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.poll_item, parent, false);
-        RadioGroup radioGroup = view.findViewById(R.id.radioGroup);
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                onClickListener.onCheckedChanged((Question) radioGroup.getTag(), i);
-            }
-        });
+
+       view.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(final View view) {
+               RadioGroup radioGroup = view.findViewById(R.id.radioGroup);
+               radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                   @Override
+                   public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                       onClickListener.onCheckedChanged((Question) view.getTag(),i);
+                   }
+               });
+           }
+       });
+
         return new PollAdapter.ViewHolder(view);
     }
 

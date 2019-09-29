@@ -141,4 +141,20 @@ public class UserService extends SQLiteOpenHelper implements IDatabaseHandler {
         db.delete(TABLE_NAME, null, null);
         db.close();
     }
+
+    public User getUserbyPhone(String phoneNumber){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_NAME, new String[]{KEY_PHONENUMBER,
+                KEY_NICKNAME, KEY_PASSWORD}, KEY_PHONENUMBER + "=?", new String[]{
+                phoneNumber}, null, null, null, null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+
+        User currentUser = new User(cursor.getString(0), cursor.getString(1),
+                cursor.getString(2), cursor.getString(3));
+        return currentUser;
+    }
 }

@@ -52,6 +52,7 @@ public class ProblemDetailsActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewQuestion);
         PollAdapter adapter = new PollAdapter(questions, new PollAdapter.ViewHolder.Listener() {
+
             @Override
             public void onCheckedChanged(Question question, int i) {
                 switch (i) {

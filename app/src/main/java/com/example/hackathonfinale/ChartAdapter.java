@@ -63,23 +63,22 @@ public class ChartAdapter  extends RecyclerView.Adapter<ChartAdapter.ViewHolder>
             textViewProblemName.setText(question.getName());
 
             ArrayList<BarEntry> entries = new ArrayList<>();
-            entries.add(new BarEntry(4f, 0));
-            entries.add(new BarEntry(8f, 1));
-            entries.add(new BarEntry(6f, 2));
-            entries.add(new BarEntry(12f, 3));
-            entries.add(new BarEntry(18f, 4));
-            entries.add(new BarEntry(9f, 5));
+
+            entries.add(new BarEntry((int) (5 + (Math.random() * 20)), 0));
+            entries.add(new BarEntry((int) (5 + (Math.random() * 20)), 1));
+            entries.add(new BarEntry((int) (5 + (Math.random() * 20)), 2));
+            entries.add(new BarEntry((int) (5 + (Math.random() * 20)), 3));
+            entries.add(new BarEntry((int) (5 + (Math.random() * 20)), 4));
 
 
             BarDataSet dataset = new BarDataSet(entries, "# of Calls");
 
-            ArrayList<String> labels = new ArrayList<String>();
-            labels.add("January");
-            labels.add("February");
-            labels.add("March");
-            labels.add("April");
-            labels.add("May");
-            labels.add("June");
+            ArrayList<String> labels = new ArrayList<>();
+            labels.add("YES");
+            labels.add("NO");
+            labels.add("MAYBEYES");
+            labels.add("MAYBENO");
+            labels.add("NEUTRAKL");
 
             BarData data = new BarData(labels ,dataset);
             barChart.setData(data);

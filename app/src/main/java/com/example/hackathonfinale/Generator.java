@@ -65,7 +65,7 @@ public class Generator {
         return randomStrings;
     }
 
-    public void generateQuestions(){
+    public ArrayList<Question> generateQuestions(){
         individualQ.add(new Question("Насколько вам понравилось обслуживание в банке в целом?"));
         individualQ.add(new Question("Оцените вежливость сотрудников банка?"));
         individualQ.add(new Question("Оцените профессионализм сотрудников банка?"));
@@ -76,5 +76,6 @@ public class Generator {
         individualQ.add(new Question("Знаете ли вы, что в случае своевременной уплаты процентов в течение 4 месяцев, банк может понизить процентную ставку по кредиту?"));
         individualQ.add(new Question("Хотели бы вы получить дополнительную информацию о кредитных картах банка?"));
         individualQ.add(new Question("Оцените насколько вы остались удовлетворены обслуживанием менеджера в целом?"));
+        return individualQ;
     }
 }

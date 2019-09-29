@@ -20,6 +20,10 @@ public class ProblemsEntityActivity extends AppCompatActivity {
         setContentView(R.layout.activity_problems_entity);
 
         problems = Generator.generatorProduct(50);
+        Generator q = new Generator();
+
+//        problems = q.generateQuestions();
+
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewProblemsEntity);
         Adapter adapter = new Adapter(problems, new Adapter.ViewHolder.Listener() {

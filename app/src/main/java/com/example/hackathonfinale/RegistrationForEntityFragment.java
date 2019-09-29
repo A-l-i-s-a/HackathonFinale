@@ -7,8 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
 
 import androidx.fragment.app.Fragment;
+
+import com.example.hackathonfinale.database.UserService;
+import com.example.hackathonfinale.entities.User;
 
 
 /**
@@ -69,6 +74,8 @@ public class RegistrationForEntityFragment extends Fragment {
         }
     }
 
+    private String type = "";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -77,12 +84,18 @@ public class RegistrationForEntityFragment extends Fragment {
 
         Button registrationButton = view.findViewById(R.id.buttonRegistrationEntity);
 
+        final EditText editTextNameEntity = view.findViewById(R.id.editTextNameEntity);
+        final EditText editTextPhoneEntity = view.findViewById(R.id.editTextPasswordEntity);
+        final EditText editTextPasswordEntity = view.findViewById(R.id.editTextPasswordEntity);
+
         if (registrationButton != null) {
             registrationButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(getContext(), ProblemsEntityActivity.class);
-
+                    User user = new User(editTextNameEntity.getText().toString(), editTextPhoneEntity.getText().toString(), editTextPasswordEntity.getText().toString(), "entity");
+                    UserService userService = new UserService(getContext());
+                    userService.addEntity(user);
                     startActivity(intent);
                 }
             });
@@ -90,6 +103,7 @@ public class RegistrationForEntityFragment extends Fragment {
 
         return view;
     }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

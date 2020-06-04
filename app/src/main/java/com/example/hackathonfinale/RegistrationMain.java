@@ -3,9 +3,18 @@ package com.example.hackathonfinale;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.example.hackathonfinale.entities.Problem;
+import com.example.hackathonfinale.entities.Question;
+import com.example.hackathonfinale.network.DataRepository;
+
+import java.util.ArrayList;
+
+import timber.log.Timber;
 
 public class RegistrationMain extends AppCompatActivity {
     RegistrationForEntityFragment registrationForEntityFragment;

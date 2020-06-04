@@ -2,6 +2,7 @@ package com.example.hackathonfinale;
 
 import com.example.hackathonfinale.entities.Problem;
 import com.example.hackathonfinale.entities.Question;
+import com.example.hackathonfinale.network.DataRepository;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -10,6 +11,7 @@ public class Generator {
 
     private ArrayList<Question> individualQ;
     private ArrayList<Question> entryQ;
+    private DataRepository dataRepository;
 
     public static ArrayList<Question> generatorQuestion(int count) {
         ArrayList<Question> questions = new ArrayList<>();
@@ -37,7 +39,7 @@ public class Generator {
             }
 
             StringBuilder description = new StringBuilder();
-            for (String s : generateRandomWords((int) (10 + (Math.random() * 100)))) {
+            for (String s : generateRandomWords((int) (5 + (Math.random() * 10)))) {
                 description.append(s).append(" ");
             }
 
@@ -76,6 +78,9 @@ public class Generator {
         individualQ.add(new Question("Знаете ли вы, что в случае своевременной уплаты процентов в течение 4 месяцев, банк может понизить процентную ставку по кредиту?"));
         individualQ.add(new Question("Хотели бы вы получить дополнительную информацию о кредитных картах банка?"));
         individualQ.add(new Question("Оцените насколько вы остались удовлетворены обслуживанием менеджера в целом?"));
+        for (Question question : individualQ) {
+            dataRepository.postQuestion(question);
+        }
         return individualQ;
     }
 }

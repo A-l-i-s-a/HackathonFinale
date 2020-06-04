@@ -1,8 +1,16 @@
 package com.example.hackathonfinale.entities;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 public class Question {
+    @SerializedName("id")
+    @Expose
+    private long id;
+    @SerializedName("name")
+    @Expose
     private String name;
     private Answers answer;
     private ArrayList<String> arrayListAnswers;
@@ -32,6 +40,14 @@ public class Question {
 
     public Question(String name, ArrayList<String> arrayListAnswers) {
         this(name, Answers.NEUTRAL, arrayListAnswers);
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {

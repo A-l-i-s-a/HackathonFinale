@@ -15,6 +15,7 @@ import com.example.hackathonfinale.entities.Answers;
 import com.example.hackathonfinale.entities.Poll;
 import com.example.hackathonfinale.entities.Problem;
 import com.example.hackathonfinale.entities.Question;
+import com.example.hackathonfinale.network.DataRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +51,7 @@ public class ProblemDetailsActivity extends AppCompatActivity {
 
         questions = Generator.generatorQuestion(20);
 
+
         RecyclerView recyclerView = findViewById(R.id.recyclerViewQuestion);
         PollAdapter adapter = new PollAdapter(questions, new PollAdapter.ViewHolder.Listener() {
 
@@ -81,7 +83,7 @@ public class ProblemDetailsActivity extends AppCompatActivity {
                                 Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.radioButton5:
-                        question.setAnswer(Answers.NEUTRAKL);
+                        question.setAnswer(Answers.NEUTRAL);
                         Toast.makeText(getApplicationContext(), question.getName() + " : 5 переключатель",
                                 Toast.LENGTH_SHORT).show();
                         break;

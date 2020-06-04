@@ -1,17 +1,28 @@
 package com.example.hackathonfinale.entities;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Comment {
+    @SerializedName("id")
+    @Expose
+    private long id;
     private User author;
+    @SerializedName("text")
+    @Expose
     private String text;
-    private int id;
 
     public Comment(User author, String text) {
         this.author = author;
         this.text = text;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public User getAuthor() {

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.hackathonfinale.entities.Problem;
+import com.example.hackathonfinale.network.DataRepository;
 
 import java.util.ArrayList;
 
@@ -19,10 +20,6 @@ public class ProblemsEntityActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_problems_entity);
 
-        problems = Generator.generatorProduct(50);
-        Generator q = new Generator();
-
-//        problems = q.generateQuestions();
 
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewProblemsEntity);

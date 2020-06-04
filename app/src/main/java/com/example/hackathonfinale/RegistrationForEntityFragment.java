@@ -12,7 +12,6 @@ import android.widget.RadioButton;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.hackathonfinale.database.UserService;
 import com.example.hackathonfinale.entities.User;
 
 
@@ -93,9 +92,9 @@ public class RegistrationForEntityFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(getContext(), ProblemsEntityActivity.class);
-                    User user = new User(editTextNameEntity.getText().toString(), editTextPhoneEntity.getText().toString(), editTextPasswordEntity.getText().toString(), "entity");
-                    UserService userService = new UserService(getContext());
-                    userService.addEntity(user);
+//                    User user = new User(editTextNameEntity.getText().toString(), editTextPhoneEntity.getText().toString(), editTextPasswordEntity.getText().toString(), "entity");
+//                    UserService userService = new UserService(getContext());
+//                    userService.addEntity(user);
                     startActivity(intent);
                 }
             });

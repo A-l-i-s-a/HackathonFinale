@@ -1,20 +1,15 @@
 package com.example.hackathonfinale;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.hackathonfinale.database.UserService;
-import com.example.hackathonfinale.entities.User;
+import androidx.fragment.app.Fragment;
 
 
 /**
@@ -77,10 +72,10 @@ public class RegistrationForIndividualFragment extends Fragment {
         Button registrationButton = view.findViewById(R.id.buttonRegistration);
 
 
-        EditText editTextFirstName = view.findViewById(R.id.editTextFirstName) ;
-        EditText editTextSecondName = view.findViewById(R.id.editTextSecondName) ;
-        EditText editTextLastName = view.findViewById(R.id.editTextLastName) ;
-        final EditText editTextPhone = view.findViewById(R.id.editTextPhone) ;
+        EditText editTextFirstName = view.findViewById(R.id.editTextFirstName);
+        EditText editTextSecondName = view.findViewById(R.id.editTextSecondName);
+        EditText editTextLastName = view.findViewById(R.id.editTextLastName);
+        final EditText editTextPhone = view.findViewById(R.id.editTextPhone);
         final EditText editTextPassword = view.findViewById(R.id.editTextPassword);
 
         final String name = editTextFirstName.getText().toString() + " " + editTextSecondName.getText().toString() + " " + editTextLastName.getText().toString();
@@ -90,9 +85,9 @@ public class RegistrationForIndividualFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(getContext(), ProblemsIndividualActivity.class);
-                    User user = new User(name, editTextPhone.getText().toString(), editTextPassword.getText().toString(), "individual");
-                    UserService userService = new UserService(getContext());
-                    userService.addEntity(user);
+//                    User user = new User(name, editTextPhone.getText().toString(), editTextPassword.getText().toString(), "individual");
+//                    UserService userService = new UserService(getContext());
+//                    userService.addEntity(user);
                     startActivity(intent);
                 }
             });

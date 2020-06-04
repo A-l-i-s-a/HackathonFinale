@@ -1,44 +1,45 @@
 package com.example.hackathonfinale.entities;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class User {
-    private int id;
-    private String phoneNumber;
-    private String nickname;
+    @SerializedName("id")
+    @Expose
+    private long id;
+    @SerializedName("username")
+    @Expose
+    private String username;
+    @SerializedName("password")
+    @Expose
     private String password;
-    private String type;
+    @SerializedName("fullname")
+    @Expose
+    private String fullname;
+    @SerializedName("street")
+    @Expose
+    private String street;
+    @SerializedName("city")
+    @Expose
+    private String city;
+    @SerializedName("phoneNumber")
+    @Expose
+    private String phoneNumber;
 
-    public User() {
-    }
-
-    public User(String phoneNumber, String nickname, String password, String type) {
-        this.phoneNumber = phoneNumber;
-        this.nickname = nickname;
-        this.password = password;
-        this.type = type;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public String getUsername() {
+        return username;
     }
 
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -49,11 +50,35 @@ public class User {
         this.password = password;
     }
 
-    public String getType() {
-        return type;
+    public String getFullname() {
+        return fullname;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

@@ -3,7 +3,6 @@ package com.example.hackathonfinale;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -20,7 +19,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChartAdapter  extends RecyclerView.Adapter<ChartAdapter.ViewHolder> {
+public class ChartAdapter extends RecyclerView.Adapter<ChartAdapter.ViewHolder> {
     private final List<Question> questions;
 
     public ChartAdapter(List<Question> questions) {
@@ -80,7 +79,7 @@ public class ChartAdapter  extends RecyclerView.Adapter<ChartAdapter.ViewHolder>
             labels.add("MAYBENO");
             labels.add("NEUTRAKL");
 
-            BarData data = new BarData(labels ,dataset);
+            BarData data = new BarData(labels, dataset);
             barChart.setData(data);
 
             dataset.setColors(ColorTemplate.COLORFUL_COLORS);
